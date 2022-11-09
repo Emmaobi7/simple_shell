@@ -18,13 +18,20 @@
 
 
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *envp[])
 {
 
 	char *str;
 	char **cmd;
+	int i;
 
 	(void) argc;
+
+	my_build array[] = 
+	{
+		{"exit", my_exit},
+		{"env", my_env},
+	};
 
 	while (1)
 	{
@@ -33,6 +40,13 @@ int main(int argc, char *argv[])
 		cmd = my_token(str);
 		if (cmd != NULL)
 		{
+			for (i = 0; i < num_builtin(); i++)
+			{
+				if (_strcmp(cmd[0], array[i].name) == 0)
+				{
+					array[i].func(cmd);
+				}
+			}
 			pid_t pid = fork();
         int val;
 
