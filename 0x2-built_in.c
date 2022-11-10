@@ -11,19 +11,8 @@
 
 
 
-<<<<<<< HEAD
-my_build array[] =
-        {
-                {"exit", my_exit},
-		{"env", my_env},
-        };
-*
-
-void my_exit(char **args)
-=======
 
 int my_exit()
->>>>>>> 6ede9c54230eadf7d7a2f267f7c7dd7fdd88c0c3
 {
 	exit(0);
 }
