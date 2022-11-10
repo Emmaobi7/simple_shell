@@ -40,6 +40,7 @@ int main(int argc, char *argv[], char *envp[])
 		cmd = my_token(str);
 		if (cmd != NULL)
 		{
+			/*
 			for (i = 0; i < num_builtin(); i++)
 			{
 				if (_strcmp(cmd[0], array[i].name) == 0)
@@ -47,6 +48,7 @@ int main(int argc, char *argv[], char *envp[])
 					array[i].func(cmd);
 				}
 			}
+			*/
 			pid_t pid = fork();
         int val;
 
