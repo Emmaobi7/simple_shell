@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define FLAG 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +16,7 @@
 typedef struct builtin
 {
 	char *name;
-	void (*func) (char **args);
+	int (*func) (void);
 }my_build;
 
 char *my_readline();
@@ -23,8 +24,9 @@ void my_execute(char **args);
 char **my_token(char *buf);
 char *my_strcat(char *dest, char *src);
 extern char **environ;
-void my_exit(char **args);
+int my_exit();
 int num_builtin();
 int _strcmp(char *s1, char *s2);
-void my_env(char **args);
+int my_env();
+int builtin_check(char *a);
 #endif 

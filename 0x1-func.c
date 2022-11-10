@@ -9,9 +9,6 @@
 
 
 
-
-
-
 char *my_readline()
 {
 	char *buffer = NULL;
@@ -72,7 +69,10 @@ char **my_token(char *buf)
 
 
 
-/*
+
+
+
+
 void my_execute(char **args)
 {
 	pid_t pid = fork();
@@ -100,4 +100,3 @@ void my_execute(char **args)
 		wait(NULL);
 	}
 }
-*/
