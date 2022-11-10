@@ -27,19 +27,15 @@ int main(int argc, char *argv[], char *envp[])
 
 	(void) argc;
 
-	my_build array[] = 
-	{
-		{"exit", my_exit},
-		{"env", my_env},
-	};
 
 	while (1)
 	{
 		printf("($)" );
 		str = my_readline();
 		cmd = my_token(str);
-		if (cmd != NULL)
+		if (cmd != NULL && cmd[0] != NULL)
 		{
+<<<<<<< HEAD
 			for (i = 0; i < num_builtin(); i++)
 			{
 				if (strcmp(cmd[0], array[i].name) == 0)
@@ -69,8 +65,11 @@ int main(int argc, char *argv[], char *envp[])
         {
                 wait(NULL);
         }
+=======
+			builtin_check(cmd[0]);
+			my_execute(cmd);
+>>>>>>> 6ede9c54230eadf7d7a2f267f7c7dd7fdd88c0c3
 		}
 	}
-
 	return (0);
 }
