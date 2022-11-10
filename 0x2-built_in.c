@@ -16,7 +16,7 @@ my_build array[] =
                 {"exit", my_exit},
 		{"env", my_env},
         };
-
+*
 
 void my_exit(char **args)
 {
@@ -27,11 +27,10 @@ void my_exit(char **args)
 void my_env(char **args)
 {
 	int i;
-	char **env;
 
-	for (i = 0; env[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n", env[i]);
+		printf("%s\n", environ[i]);
 	}
 }
 

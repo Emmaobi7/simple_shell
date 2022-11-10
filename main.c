@@ -42,14 +42,13 @@ int main(int argc, char *argv[], char *envp[])
 		{
 			for (i = 0; i < num_builtin(); i++)
 			{
-				if (_strcmp(cmd[0], array[i].name) == 0)
+				if (strcmp(cmd[0], array[i].name) == 0)
 				{
 					array[i].func(cmd);
 				}
 			}
 			pid_t pid = fork();
         int val;
-
 
         if (pid == -1)
         {
