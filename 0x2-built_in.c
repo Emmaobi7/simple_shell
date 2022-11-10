@@ -48,7 +48,7 @@ int builtin_check(char *a)
 	i = 0;
 	while (array[i].name != NULL)
 	{
-		if (_strcmp(array[i].name, a) == 0 && (strlen(array[i].name) == strlen(a)))
+		if (_strcmp(array[i].name, a) == 0 && (_strlen(array[i].name) == _strlen(a)))
 		{
 			return (array[i].func());
 		}

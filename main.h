@@ -29,4 +29,5 @@ int num_builtin();
 int _strcmp(char *s1, char *s2);
 int my_env();
 int builtin_check(char *a);
+int _strlen(char *s);
 #endif 

@@ -36,7 +36,29 @@ int main(int argc, char *argv[], char *envp[])
 		if (cmd != NULL && cmd[0] != NULL)
 		{
 			builtin_check(cmd[0]);
-			my_execute(cmd);
+
+			pid_t pid = fork();
+			pid_t val;
+
+			if (pid == -1)
+			{
+				perror("Error forking");
+				exit(1);
+			}
+
+			if (pid == 0)
+			{
+				val = execve(cmd[0], cmd, environ);
+				if (val == -1)
+				{
+					perror(argv[0]);
+					exit(1);
+				}
+			}
+			else
+			{
+				wait(NULL);
+			}
 		}
 	}
 	return (0);
