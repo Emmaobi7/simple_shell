@@ -23,7 +23,7 @@ int main(int argc, char *argv[], char *envp[])
 
 	char *str;
 	char **cmd;
-	int i;
+	int i, status;
 
 	(void) argc;
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[], char *envp[])
 			}
 			else
 			{
-				wait(NULL);
+				wait(&status);
 			}
 		}
 	}
