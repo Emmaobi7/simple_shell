@@ -12,6 +12,16 @@
 
 
 
+
+
+
+
+
+int my_cd()
+{
+	return (0);
+}
+
 int my_exit()
 {
 	exit(0);
@@ -28,20 +38,15 @@ int my_env()
 	}
 	return (0);
 }
-/*
-int num_builtin()
-{
-	my_build array[] =                                        {                                                         {"exit", my_exit},                                {"env", my_env},                                  {NULL, NULL}                              };
-	return (sizeof(array) / sizeof(my_build));
-}
-*/
 
 
-int builtin_check(char *a)
+
+int builtin(char *a)
 {
 	my_build array[] =
                 {                                                         {"exit", my_exit},
                         {"env", my_env},
+			{"cd", my_cd},
                         {NULL, NULL}                              };
 	int i;
 	
@@ -57,4 +62,3 @@ int builtin_check(char *a)
 	
 	return (1);
 }
-

@@ -1,33 +1,47 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define FLAG 1
+#define _GNU_SOURCE
+#define DELIM ": '\n''\t'"
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
-
-
-
-
-
-typedef struct builtin
+typedef struct list_s
 {
-	char *name;
-	int (*func) (void);
-}my_build;
+	char *str;
+	struct list_s *next;
+} list_t;
 
-char *my_readline();
-void my_execute(char **args);
-char **my_token(char *buf);
-char *my_strcat(char *dest, char *src);
-extern char **environ;
-int my_exit();
-int num_builtin();
+typedef struct command
+{
+	char *arg;
+	int (*func)(void);
+
+} cmnd_t;
+
+int main(void);
+int _strlen(char *);
+int env(void);
+int exitshell(void);
+int *printdir(void);
+int _setenv(const char *name, const char *value, int overwrite);
+int builtin(char *s);
+int printenv(void);
 int _strcmp(char *s1, char *s2);
-int my_env();
-int builtin_check(char *a);
-int _strlen(char *s);
-#endif 
+int _help(char *args);
+char *_getenv(const char *name);
+char *findpath(char *name);
+char *_strdup(char *str);
+char *str_concat(char *s1, char *s2);
+char *getinput(void);
+char **tokenizer(char *buffer);
+void _sigign(int sig);
+extern char **environ;
+
+#endif

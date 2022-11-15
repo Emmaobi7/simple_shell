@@ -2,64 +2,44 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int main(int argc, char *argv[], char *envp[])
+int main(void)
 {
+	char *argv[5], *token, *buffer;
+	pid_t child;
+	int status, x = 0;
 
-	char *str;
-	char **cmd;
-	int i, status;
-
-	(void) argc;
-
-
+	signal(SIGINT, _sigign);
 	while (1)
 	{
-		printf("($)" );
-		str = my_readline();
-		cmd = my_token(str);
-		if (cmd != NULL && cmd[0] != NULL)
+		argv[0] = NULL, buffer = NULL, token = NULL, x = 0;
+		buffer = getinput();
+		token = strtok(buffer, DELIM);
+		do {
+			argv[x] = _strdup(token);
+			x++;
+			token = strtok(NULL, DELIM);
+		} while (token != NULL);
+		argv[x] = NULL;
+		if (argv != NULL && argv[0] != NULL)
 		{
-			builtin_check(cmd[0]);
-
-			pid_t pid = fork();
-			pid_t val;
-
-			if (pid == -1)
+			builtin(argv[0]);
+			argv[0] = findpath(argv[0]);
+			child = fork();
+			if (child < 0)
+				perror("Error");
+			if (child == 0)
 			{
-				perror("Error forking");
-				exit(1);
-			}
-
-			if (pid == 0)
-			{
-				val = execve(cmd[0], cmd, environ);
-				if (val == -1)
+				if (execve(argv[0], argv, NULL) == -1)
 				{
-					perror(argv[0]);
+					perror("Error");
 					exit(1);
 				}
 			}
-			else
-			{
-				wait(&status);
-			}
+			wait(&status);
 		}
+		free(buffer);
+		free(token);
 	}
+	free(buffer);
 	return (0);
 }
