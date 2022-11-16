@@ -1,4 +1,5 @@
 #include "shell.h"
+emmma nopr
 
 /**
  * input_buf - buffers chained commands
